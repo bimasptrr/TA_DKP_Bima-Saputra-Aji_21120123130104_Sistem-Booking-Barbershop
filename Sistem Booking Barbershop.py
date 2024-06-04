@@ -49,6 +49,9 @@ class AplikasiBarbershop:
                 if isian == "No. Telepon":
                     self.entri[isian] = Entry(self.frame_utama, font=self.font_style, background="white", foreground="black", validate="key")
                     self.entri[isian].config(validatecommand=(self.root.register(self.validasi_nomor), '%P'))
+                elif isian == "Nama":
+                    self.entri[isian] = Entry(self.frame_utama, font=self.font_style, background="white", foreground="black", validate="key")
+                    self.entri[isian].config(validatecommand=(self.root.register(self.validasi_huruf), '%P'))
                 else:
                     self.entri[isian] = Entry(self.frame_utama, font=self.font_style, background="white", foreground="black")
                 
@@ -58,6 +61,12 @@ class AplikasiBarbershop:
         if nilai.isdigit() or nilai == "":
             return True
         showinfo("Input Tidak Valid", "Nomor telepon hanya boleh berisi angka.")
+        return False
+
+    def validasi_huruf(self, nilai):
+        if nilai.isalpha() or nilai == "":
+            return True
+        showinfo("Input Tidak Valid", "Nama hanya boleh berisi huruf.")
         return False
 
     def kirim_pemesanan(self):
